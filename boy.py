@@ -86,6 +86,10 @@ class RUN:
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
         boy.x += boy.dir * boy.speed
+        if boy.x < 50:
+            boy.x = 50
+        elif boy.x > 750:
+            boy.x = 750
 
     @staticmethod
     def draw(boy):
