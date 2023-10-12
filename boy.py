@@ -43,6 +43,7 @@ class AutoRun:
                 boy.dir, boy.action = -1, 0
             elif boy.action == 3:
                 boy.dir, boy.action = 1, 1
+        boy.start_time = get_time()
 
     @staticmethod
     def exit(boy, e):
@@ -52,6 +53,8 @@ class AutoRun:
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
         boy.x += boy.dir * 5
+        if get_time() - boy.start_time > 4:
+            boy.state_machine.handle_event(('TIME_OUT', 0))
 
     @staticmethod
     def draw(boy):
@@ -138,7 +141,7 @@ class StateMachine:
             Idle: {right_down: RUN, right_up: RUN, left_down: RUN, left_up: RUN, time_out: Sleep, a_down: AutoRun},
             RUN: {right_down: Idle, right_up: Idle, left_down: Idle, left_up: Idle},
             Sleep: {right_down: RUN, right_up: RUN, left_down: RUN, left_up: RUN, space_down: Idle},
-            AutoRun: {a_up: AutoRun}
+            AutoRun: {a_up: AutoRun, time_out: Idle}
         }
         pass
 
