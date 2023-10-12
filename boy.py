@@ -52,7 +52,7 @@ class AutoRun:
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
-        boy.x += boy.dir * 5
+        boy.x += boy.dir * boy.speed
         if boy.x < 50:
             boy.x, boy.dir, boy.action = 50, 1, 1
         elif boy.x > 750:
@@ -79,7 +79,7 @@ class RUN:
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
-        boy.x += boy.dir * 5
+        boy.x += boy.dir * boy.speed
 
     @staticmethod
     def draw(boy):
@@ -179,6 +179,7 @@ class Boy:
         self.frame = 0
         self.dir = 0
         self.action = 3
+        self.speed = 5
         self.image = load_image('animation_sheet.png')
         self.state_machine = StateMachine(self)
         self.state_machine.start()
