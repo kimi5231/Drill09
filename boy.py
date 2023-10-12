@@ -52,7 +52,11 @@ class AutoRun:
     @staticmethod
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
+        boy.sizeX += 1
+        boy.sizeY += 1
+        boy.speed += 0.1
         boy.x += boy.dir * boy.speed
+        boy.y += 0.3
         if boy.x < 50:
             boy.x, boy.dir, boy.action = 50, 1, 1
         elif boy.x > 750:
@@ -62,7 +66,7 @@ class AutoRun:
 
     @staticmethod
     def draw(boy):
-        boy.image.clip_draw(boy.frame * 100, boy.action * 100, boy.sizeX, boy.sizeY, boy.x, boy.y)
+        boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100, boy.x, boy.y, boy.sizeX, boy.sizeY)
 
 class RUN:
     @staticmethod
@@ -83,7 +87,7 @@ class RUN:
 
     @staticmethod
     def draw(boy):
-        boy.image.clip_draw(boy.frame * 100, boy.action * 100, boy.sizeX, boy.sizeY, boy.x, boy.y)
+        boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100, boy.x, boy.y)
 
 
 class Sleep:
@@ -103,10 +107,10 @@ class Sleep:
     @staticmethod
     def draw(boy):
         if boy.action == 2:
-            boy.image.clip_composite_draw(boy.frame * 100, boy.action * 100, boy.sizeX, boy.sizeY,
+            boy.image.clip_composite_draw(boy.frame * 100, boy.action * 100, 100, 100,
                                       -math.pi/2, ' ', boy.x - 25, boy.y - 25, 100, 100)
         else:
-            boy.image.clip_composite_draw(boy.frame * 100, boy.action * 100, boy.sizeX, boy.sizeY,
+            boy.image.clip_composite_draw(boy.frame * 100, boy.action * 100, 100, 100,
                                           math.pi / 2, ' ', boy.x - 25, boy.y - 25, 100, 100)
 
 
@@ -134,7 +138,7 @@ class Idle:
 
     @staticmethod
     def draw(boy):
-        boy.image.clip_draw(boy.frame * 100, boy.action * 100, boy.sizeX, boy.sizeY, boy.x, boy.y)
+        boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100, boy.x, boy.y)
 
 
 class StateMachine:
