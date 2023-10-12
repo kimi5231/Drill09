@@ -31,10 +31,14 @@ def a_down(e):
     return e[0] == 'INPUT' and e[1].type == SDL_KEYDOWN and e[1].key == SDLK_a
 
 
+def a_up(e):
+    return e[0] == 'INPUT' and e[1].type == SDL_KEYUP and e[1].key == SDLK_a
+
+
 class AutoRun:
     @staticmethod
     def enter(boy, e):
-        if a_down(e):
+        if a_down(e) or a_up(e):
             boy.dir, boy.action = 1, 1
 
     @staticmethod
@@ -130,7 +134,8 @@ class StateMachine:
         self.table = {
             Idle: {right_down: RUN, right_up: RUN, left_down: RUN, left_up: RUN, time_out: Sleep, a_down: AutoRun},
             RUN: {right_down: Idle, right_up: Idle, left_down: Idle, left_up: Idle},
-            Sleep: {right_down: RUN, right_up: RUN, left_down: RUN, left_up: RUN, space_down: Idle}
+            Sleep: {right_down: RUN, right_up: RUN, left_down: RUN, left_up: RUN, space_down: Idle},
+            AutoRun: {a_up: AutoRun}
         }
         pass
 
