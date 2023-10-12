@@ -47,7 +47,9 @@ class AutoRun:
 
     @staticmethod
     def exit(boy, e):
-        pass
+        boy.sizeX, boy.sizeY = 100, 100
+        boy.speed = 5
+        boy.y = 90
 
     @staticmethod
     def do(boy):
