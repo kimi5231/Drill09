@@ -151,7 +151,7 @@ class StateMachine:
             Idle: {right_down: RUN, right_up: RUN, left_down: RUN, left_up: RUN, time_out: Sleep, a_down: AutoRun},
             RUN: {right_down: Idle, right_up: Idle, left_down: Idle, left_up: Idle},
             Sleep: {right_down: RUN, right_up: RUN, left_down: RUN, left_up: RUN, space_down: Idle},
-            AutoRun: {a_up: AutoRun, time_out: Idle}
+            AutoRun: {a_up: AutoRun, time_out: Idle, right_down: RUN, right_up: RUN, left_down: RUN, left_up: RUN}
         }
         pass
 
