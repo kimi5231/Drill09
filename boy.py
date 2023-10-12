@@ -1,6 +1,6 @@
 from pico2d import load_image, get_time
 import math
-from sdl2 import SDL_KEYDOWN, SDLK_SPACE, SDLK_RIGHT, SDL_KEYUP, SDLK_LEFT
+from sdl2 import SDL_KEYDOWN, SDLK_SPACE, SDLK_RIGHT, SDL_KEYUP, SDLK_LEFT, SDLK_a
 
 
 def space_down(e):
@@ -28,12 +28,27 @@ def left_up(e):
 
 
 def a_down(e):
-    return e[0] == 'INPUT' and e[1].type == SDL_KEYDOWN and e[1].key == 'a'
+    return e[0] == 'INPUT' and e[1].type == SDL_KEYDOWN and e[1].key == SDLK_a
 
 
 class AutoRun:
-    pass
+    @staticmethod
+    def enter(boy, e):
+        if a_down(e):
+            boy.dir, boy.action = 1, 1
 
+    @staticmethod
+    def exit(boy, e):
+        pass
+
+    @staticmethod
+    def do(boy):
+        boy.frame = (boy.frame + 1) % 8
+        boy.x += boy.dir * 5
+
+    @staticmethod
+    def draw(boy):
+        boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100, boy.x, boy.y)
 
 class RUN:
     @staticmethod
