@@ -62,7 +62,7 @@ class AutoRun:
 
     @staticmethod
     def draw(boy):
-        boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100, boy.x, boy.y)
+        boy.image.clip_draw(boy.frame * 100, boy.action * 100, boy.sizeX, boy.sizeY, boy.x, boy.y)
 
 class RUN:
     @staticmethod
@@ -83,7 +83,7 @@ class RUN:
 
     @staticmethod
     def draw(boy):
-        boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100, boy.x, boy.y)
+        boy.image.clip_draw(boy.frame * 100, boy.action * 100, boy.sizeX, boy.sizeY, boy.x, boy.y)
 
 
 class Sleep:
@@ -103,10 +103,10 @@ class Sleep:
     @staticmethod
     def draw(boy):
         if boy.action == 2:
-            boy.image.clip_composite_draw(boy.frame * 100, boy.action * 100, 100, 100,
+            boy.image.clip_composite_draw(boy.frame * 100, boy.action * 100, boy.sizeX, boy.sizeY,
                                       -math.pi/2, ' ', boy.x - 25, boy.y - 25, 100, 100)
         else:
-            boy.image.clip_composite_draw(boy.frame * 100, boy.action * 100, 100, 100,
+            boy.image.clip_composite_draw(boy.frame * 100, boy.action * 100, boy.sizeX, boy.sizeY,
                                           math.pi / 2, ' ', boy.x - 25, boy.y - 25, 100, 100)
 
 
@@ -134,7 +134,7 @@ class Idle:
 
     @staticmethod
     def draw(boy):
-        boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100, boy.x, boy.y)
+        boy.image.clip_draw(boy.frame * 100, boy.action * 100, boy.sizeX, boy.sizeY, boy.x, boy.y)
 
 
 class StateMachine:
@@ -176,6 +176,7 @@ class StateMachine:
 class Boy:
     def __init__(self):
         self.x, self.y = 400, 90
+        self.sizeX, self.sizeY = 100, 100
         self.frame = 0
         self.dir = 0
         self.action = 3
