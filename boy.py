@@ -39,7 +39,10 @@ class AutoRun:
     @staticmethod
     def enter(boy, e):
         if a_down(e) or a_up(e):
-            boy.dir, boy.action = 1, 1
+            if boy.action == 2:
+                boy.dir, boy.action = -1, 0
+            elif boy.action == 3:
+                boy.dir, boy.action = 1, 1
 
     @staticmethod
     def exit(boy, e):
