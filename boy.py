@@ -53,6 +53,10 @@ class AutoRun:
     def do(boy):
         boy.frame = (boy.frame + 1) % 8
         boy.x += boy.dir * 5
+        if boy.x < 50:
+            boy.x, boy.dir, boy.action = 50, 1, 1
+        elif boy.x > 750:
+            boy.x, boy.dir, boy.action = 750, -1, 0
         if get_time() - boy.start_time > 4:
             boy.state_machine.handle_event(('TIME_OUT', 0))
 
