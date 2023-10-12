@@ -35,7 +35,6 @@ class RUN:
         if left_down(e) or right_up(e):
             boy.dir, boy.action = -1, 0
 
-
     @staticmethod
     def exit(boy, e):
         pass
@@ -48,6 +47,7 @@ class RUN:
     @staticmethod
     def draw(boy):
         boy.image.clip_draw(boy.frame * 100, boy.action * 100, 100, 100, boy.x, boy.y)
+
 
 class Sleep:
     @staticmethod
@@ -71,6 +71,8 @@ class Sleep:
         else:
             boy.image.clip_composite_draw(boy.frame * 100, boy.action * 100, 100, 100,
                                           math.pi / 2, ' ', boy.x - 25, boy.y - 25, 100, 100)
+
+
 class Idle:
     @staticmethod
     def enter(boy, e):
@@ -108,9 +110,11 @@ class StateMachine:
             Sleep: {right_down: RUN, right_up: RUN, left_down: RUN, left_up: RUN, space_down: Idle}
         }
         pass
+
     def start(self):
         self.cur_state.enter(self.boy, ('START', 0))
         pass
+
     def update(self):
         self.cur_state.do(self.boy)
         pass
